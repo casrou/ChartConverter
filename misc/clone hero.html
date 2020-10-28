@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        /* :root {
+                --sustainColor: lightgrey;
+            }
+
+            table {
+                border-left: #333333 solid 2px;
+                border-right: #333333 solid 2px;
+            }
+
+            td {
+                min-height: 1.5em;
+                min-width: 3em;
+                max-height: 1.5em;
+                max-width: 3em;
+                border: 0;
+                padding: 0;
+                display: inline-block;
+                margin: 0 2px 0 2px;
+            }
+
+            td[class]{
+                border-radius: 50%;
+                box-shadow: inset 0 0 .5px 1px #333333, 1px 1px 1px 0px rgba(0,0,0,0.75);
+                text-align: center;
+            } */
+
+        /* td.sustained1 {
+                box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75),
+                    1px -.25em 1px 0px black, 1px -.5em 1px 0px black, 1px -.75em 1px 0px black, 1px -1em 1px 0px black;
+            } */
+
+        /* td.sustained1 {
+                box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75),
+                0px -.25em 1px 0px #333333, 0px -.5em 1px 0px #333333, 0px -.75em 1px 0px #333333, 0px -1em 1px 0px #333333, 
+                0px -1.25em 1px 0px #333333, 0px -1.5em 1px 0px #333333; 
+            }
+
+            td.sustained2 {
+                box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75),
+                    0px -.25em 1px 0px #333333, 0px -.5em 1px 0px #333333, 0px -.75em 1px 0px #333333, 0px -1em 1px 0px #333333,
+                    0px -1.25em 1px 0px #333333, 0px -1.5em 1px 0px #333333, 0px -1.75em 1px 0px #333333, 0px -2em 1px 0px #333333, 
+                    0px -2.25em 1px 0px #333333, 0px -2.5em 1px 0px #333333, 0px -2.75em 1px 0px #333333, 0px -3em 1px 0px #333333;
+            } */
+
+        /* td.sustained {
+                background-color: var(--sustainColor);
+                box-shadow: 0 0.01em 1px 0px var(--sustainColor),
+                    0px .25em 1px .25px var(--sustainColor), 0px .5em 1px .25px var(--sustainColor), 0px .75em 1px .25px var(--sustainColor),
+                    0px 1em 1px .25px var(--sustainColor), 0px 1.25em 1px .25px var(--sustainColor), 0px .1em 1px 0px var(--sustainColor);
+            } */
+
+        /* td.sustained2 {
+                background-color: var(--sustainColor);
+                box-shadow: 0 0.01em 1px 0px var(--sustainColor), 0px .1em 1px 0px var(--sustainColor),
+                    0px .25em 1px .25px var(--sustainColor), 0px .5em 1px .25px var(--sustainColor), 
+                    0px .75em 1px .25px var(--sustainColor), 0px 1em 1px .25px var(--sustainColor), 
+                    0px 1.25em 1px .25px var(--sustainColor), 0px 1.5em 1px .25px var(--sustainColor), 
+                    0px 1.75em 1px .25px var(--sustainColor), 0px 2em 1px .25px var(--sustainColor),
+                    0px 2.25em 1px .25px var(--sustainColor), 0px 2.5em 1px .25px var(--sustainColor),
+                    0px 2.75em 1px .25px var(--sustainColor);
+            } */
+
+        /* td.sustained {
+                background-color: var(--sustainColor);
+                box-shadow: 
+                    0px .25em 1px .25px var(--sustainColor), 0px .5em 1px .25px var(--sustainColor), 
+                    0px .75em 1px .25px var(--sustainColor), 0px 1em 1px .25px var(--sustainColor), 
+                    0px 1.25em 1px .25px var(--sustainColor), 0px 1.5em 1px .25px var(--sustainColor);
+            }
+
+            .green {
+                background-color: green;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            .yellow {
+                background-color: yellow;
+            }
+
+            .blue {
+                background-color: blue;
+            }
+
+            .orange {
+                background-color: orange;
+            } */
+
+        /* NEW STYLE */
+        :root {
+            /* --sustainColor: lightgrey; */
+            --fretSize: 1.5;
+            --fretBorderTop: 0.15rem;
+            --fretBorderBottom: 0.2rem;
+            --fretMargin: 0.5rem;
+            --fretPaddingY: 0.35rem;
+            /* --boxSize: 1.5; */
+        }
+
+        #clonehero {
+            margin: 1rem 0 1rem 0;
+        }
+
+        #chFretsRow td > div {
+            display: inline-block;
+            border-radius: 50%;
+            background-color: #333;
+            border-top: calc(var(--fretSize) * var(--fretBorderTop)) solid white;
+            border-right: calc(var(--fretSize) * 0.3rem) solid white;
+            border-bottom: calc(var(--fretSize) * var(--fretBorderBottom)) solid white;
+            border-left: calc(var(--fretSize) * 0.3rem) solid white;
+            margin: calc(var(--fretSize) * var(--fretMargin));
+            padding: calc(var(--fretSize) * var(--fretPaddingY)) calc(var(--fretSize) * 1rem);
+            box-shadow: 0 calc(var(--fretSize) * .1rem) 0 calc(var(--fretSize) * .21rem), 
+                0 calc(var(--fretSize) * .15rem) 0 calc(var(--fretSize) * .21rem), 
+                0 calc(var(--fretSize) * .2rem) 0 calc(var(--fretSize) * .2rem);
+        }
+
+        #chFretsRow td > div::after {
+            content: " ";
+            height: calc(var(--fretSize) * (var(--fretBorderTop) + var(--fretBorderBottom) + var(--fretMargin) + var(--fretPaddingY) + .21rem));
+            width: calc(var(--fretSize) * 3rem);
+            position: absolute;
+            margin-left: calc(var(--fretSize) * -1.5rem);
+            margin-top: calc(-1 * var(--fretSize) * 0.5 * ((var(--fretBorderTop) + var(--fretBorderBottom) + var(--fretMargin) + var(--fretPaddingY))));
+            border-radius: 50%;
+            opacity: 0.5;
+            box-shadow: 0px calc(var(--fretSize) * 1px) calc(var(--fretSize) * 3px) calc(var(--fretSize) * 1px) #333;
+            z-index: -1;
+        }
+
+        #chFretsRow td.selected > div::after {
+            box-shadow: 0px calc(var(--fretSize) * 1px) calc(var(--fretSize) * 2px) calc(var(--fretSize) * 4px) #333;
+        }
+
+        #chFretsRow td:active {
+            transform: translateY(4px);
+        }
+
+        #clonehero .green {
+            color: green;
+        }
+
+        #clonehero .red {
+            color: red;
+        }
+
+        #clonehero .yellow {
+            color: yellow;
+        }
+
+        #clonehero .blue {
+            color: blue;
+        }
+
+        #clonehero .orange {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div id="clonehero">
+        <table id="chTable">
+            <tr id="chFretsRow">
+                <td class="green">
+                    <div></div>
+                </td>
+                <td class="red">
+                    <div></div>
+                </td>
+                <td class="yellow">
+                    <div></div>
+                </td>
+                <td class="blue">
+                    <div></div>
+                </td>
+                <td class="orange">
+                    <div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="orange">⚪</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="sustained"></td>
+            <td class="orange">⚪</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="sustained"> </td>
+            <td class="sustained"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="sustained"></td>
+            <td class="yellow">⚪</td>
+            <td class="blue">⚪</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="green">⚪</td>
+            <td class="red">⚪</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="green">⚪</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table> -->
+    <script src="" async defer></script>
+</body>
+
+</html>

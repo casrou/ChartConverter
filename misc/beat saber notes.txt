@@ -1,0 +1,33 @@
+EVENTS (lys)
+
+NOTES
+    time: tidspunkt
+    lineIndex: bane horizontal, 0-3
+    lineLayer: bane vertical, 0-2
+    type: farve (rød = 0, blå = 1), bombe = 3
+    cutDirection: pil (ned = 1, venstre = 2, ned/højre = 7, 8 = alle retninger)
+
+    e.g.
+    {
+        "_time": 3,
+        "_lineIndex": 2,
+        "_lineLayer": 0,
+        "_type": 1,
+        "_cutDirection": 1
+    }
+
+OBSTACLES
+    time: tidspunkt
+    duration: længde
+    type: mur = 0 (altid 0?)
+    lineIndex: bane horizontal, 0-3
+    width: bredde (altid 1?)
+
+    e.g.
+    {
+        "_time": 4,
+        "_duration": 1,
+        "_type": 0,
+        "_lineIndex": 0,
+        "_width": 1
+    }

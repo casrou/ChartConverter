@@ -1,0 +1,48 @@
+﻿@using ChartConverter.Blazor.Models;
+@{
+    var fretColors = Enum.GetValues(typeof(CloneHeroColor)).Cast<CloneHeroColor>();
+}
+<div id="clonehero">
+    <table id="chTable">
+        <tr id="chFretsRow">
+            @foreach (var color in fretColors)
+            {
+                <td @onclick="@(() => ChangeColorAndInvoke(color))" id="@("chFret" + color)" class="@color.ToString().ToLower() @CheckSelected(color)"><div></div></td>
+            }
+        </tr>
+    </table>
+</div>
+
+@code {
+    public CloneHeroColor CurrentColor { get; private set; } = CloneHeroColor.Green;// "green";
+
+    [Parameter]
+    public EventCallback<ChangeColorDto> OnFretColorChange { get; set; }
+
+    private void ChangeColorAndInvoke(CloneHeroColor color)
+    {
+        var dto = new ChangeColorDto()
+        {
+            OldColor = CurrentColor,
+            NewColor = color
+        };
+
+        OnFretColorChange.InvokeAsync(dto);
+        CurrentColor = color;
+    }
+
+    private string Capitalize(string str)
+    {
+        if (str.Length == 0)
+            return "";
+        else if (str.Length == 1)
+            return char.ToUpper(str[0]).ToString();
+        else
+            return char.ToUpper(str[0]) + str.Substring(1);
+    }
+
+    private string CheckSelected(CloneHeroColor color)
+    {
+        return (color == CurrentColor) ? "selected" : "";
+    }
+}

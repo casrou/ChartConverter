@@ -1,0 +1,31 @@
+.chart file
+
+192 = N 0 0
+
+position = type fret length
+
+Frets:
+0: green
+1: red
+2: yellow
+3: blue
+4: orange
+
+Tap:
+another line of type N at the same time at "fret" 6, eg. tap blue
+1344 = N 3 0
+1344 = N 6 0
+
+Forced:
+another line of type N at the same time at "fret" 6, eg. forced red
+2208 = N 1 0
+2208 = N 5 0
+
+Starpower:
+another line of type S at the same time at "fret" 2, eg. starpower yellow
+3072 = N 2 0
+3072 = S 2 0
+
+Sustained:
+length > 0, eg.
+3648 = N 0 384

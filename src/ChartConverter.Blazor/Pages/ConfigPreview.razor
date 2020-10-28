@@ -1,0 +1,61 @@
+﻿<div id="configPreview">
+    @if (Config.CloneHeroColorBeatSaberConfigsDic.ContainsKey(_color))
+    {
+        var configs = Config.CloneHeroColorBeatSaberConfigsDic[_color];
+        @foreach (var config in configs)
+        {
+            <div>
+                <table @onclick="(() => PreviewConfigClicked(config))">
+                    @for (int i = 0; i < config.DirectionAndColors.GetLength(0); i++)
+                    {
+                        int row = i;
+                        <tr>
+                            @for (int j = 0; j < config.DirectionAndColors.GetLength(1); j++)
+                            {
+                                int col = j;
+                                var dirColor = config.DirectionAndColors[row, col];
+                                if (dirColor != null)
+                                {
+                                    var direction = dirColor.Direction;
+                                    var bsColor = dirColor.Color;
+                                    <td>
+                                        <div style="background-color: @bsColor.GetColorClassNameFromColor()">
+                                            @direction.GetArrowStringFromCutDirection()
+                                        </div>
+                                    </td>
+                                } else
+                                {
+                                    <td><div></div></td>
+                                }
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private CloneHeroColor _color;
+
+    [Parameter]
+    public ConverterConfig Config { get; set; }
+    [Parameter]
+    public EventCallback<SelectPreviewDto> OnPreviewSelected { get; set; }
+
+    public void SetColor(CloneHeroColor color)
+    {
+        _color = color;
+        StateHasChanged();
+    }
+
+    async Task PreviewConfigClicked(BeatSaberConfiguration configuration)
+    {
+        await OnPreviewSelected.InvokeAsync(new SelectPreviewDto()
+        {
+            Configuration = configuration,
+            Color = _color
+        });
+    }
+}

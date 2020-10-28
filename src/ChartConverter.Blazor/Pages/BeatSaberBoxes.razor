@@ -1,0 +1,99 @@
+﻿@using ChartConverter.Blazor.Models
+@{ 
+    var rows = 3;
+    var columns = 4;
+}
+<div id="beatsaber">
+    <table id="bsTable">
+        @for (int i = 0; i < rows; i++)
+        {
+            int row = i;
+            <tr>
+                @for (int j = 0; j < columns; j++)
+                {
+                    int col = j;
+                    <td>
+                        <div @onclick="@((e) => OnConfigChange(e, row, col))" @oncontextmenu="((e) => OnConfigChange(e, row, col))"
+                        @onmousedown="@(() => DoNothing())"
+                        @oncontextmenu:preventDefault="true"
+                        @onmousedown:preventDefault="true"
+                        class="@GetCellColorClass(row, col)" id="@("bsCell" + row + col)">
+                            @GetCellArrow(row, col)
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+@code {   
+
+    public BeatSaberConfiguration CurrentConfiguration { get; private set; } = new BeatSaberConfiguration();
+
+    public void ResetConfiguration()
+    {
+        CurrentConfiguration = new BeatSaberConfiguration();
+        StateHasChanged();
+    }
+
+    public void SetConfiguration(BeatSaberConfiguration configuration)
+    {
+        CurrentConfiguration = configuration;
+        StateHasChanged();
+    }
+
+    //public void AddConfiguration(BeatSaberConfiguration configuration)
+    //{
+    //    BeatSaberConfigurations.Add(configuration);
+    //    StateHasChanged();
+    //}
+
+    void OnConfigChange(MouseEventArgs e, int row, int col)
+    {
+        var cutDirectionAndColor = CurrentConfiguration.DirectionAndColors[row, col];
+        if (cutDirectionAndColor == null) cutDirectionAndColor = new DirectionAndColor();
+
+        if (e.CtrlKey)
+        {
+            cutDirectionAndColor.Color = BeatSaberColor.NONE;
+            cutDirectionAndColor.Direction = BeatSaberCutDirection.NONE;
+            return;
+        }
+
+        if (e.Type == "contextmenu")
+        {
+            if(cutDirectionAndColor.Direction == BeatSaberCutDirection.NONE)
+            {
+                cutDirectionAndColor.Direction = BeatSaberCutDirection.ALL;
+            }
+            cutDirectionAndColor.Color = (cutDirectionAndColor.Color == BeatSaberColor.BLUE)? BeatSaberColor.RED : BeatSaberColor.BLUE;
+            return;
+        }
+
+        if (cutDirectionAndColor.Color == BeatSaberColor.NONE) cutDirectionAndColor.Color = BeatSaberColor.BLUE;
+        var cutDirectionNumber = BeatSaberEnumHelper.GetIntFromCutDirection(cutDirectionAndColor.Direction);
+
+        var change = (e.ShiftKey)? -1 : 1;
+        var newDirection = BeatSaberEnumHelper.GetCutDirectionFromInt(cutDirectionNumber + change);
+        if (newDirection == BeatSaberCutDirection.NONE) cutDirectionAndColor.Color = BeatSaberColor.NONE;
+        cutDirectionAndColor.Direction = newDirection;
+    }
+
+    string GetCellColorClass(int row, int col)
+    {
+        var dirAndColor = CurrentConfiguration.DirectionAndColors[row, col];
+        if (dirAndColor == null) return "";
+        return BeatSaberEnumHelper.GetColorClassNameFromColor(dirAndColor.Color);
+    }
+
+    string GetCellArrow(int row, int col)
+    {
+        var direction = CurrentConfiguration.DirectionAndColors[row, col]?.Direction ?? BeatSaberCutDirection.NONE;
+        if (direction == BeatSaberCutDirection.NONE) return "";
+
+        return BeatSaberEnumHelper.GetArrowStringFromCutDirection(direction);
+    }
+
+    void DoNothing() { }
+}

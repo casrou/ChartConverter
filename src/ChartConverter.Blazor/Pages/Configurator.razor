@@ -1,0 +1,91 @@
+﻿<div id="configurator">
+    <p>@status</p>
+    <h5 class="dropdown-toggle" @onclick="@ToggleHidden">Configurator</h5>
+    <div hidden="@isHidden">
+        <BeatSaberBoxes @ref="beatSaberBoxes" />
+        <CloneHeroFrets @ref="cloneHeroFrets" OnFretColorChange="CloneHeroFretColorChange" />
+        <ConfigPreview @ref="configPreview" OnPreviewSelected="ConfigPreviewSelected" Config="Config" />
+
+        <p>Configure the relationship between BeatSaber boxes and Clone Hero frets.</p>
+        <p>BeatSaber boxes:</p>
+        <ol>
+            <li>Left click: Change cut direction.</li>
+            <li>Right click: Change color.</li>
+            <li>Ctrl-click: Reset.</li>
+            <li>Shift-click: Go backwards.</li>
+        </ol>
+        <p>Clone Hero frets:</p>
+        <ol>
+            <li>Click to save configuration and change fret.</li>
+        </ol>
+        <p>Configuration preview:</p>
+        <ol>
+            <li>Click an existing configuration to edit.</li>
+        </ol>
+    </div>
+</div>
+
+@code {
+    bool isHidden = true;
+    string status;
+
+    public ConverterConfig Config { get; private set; } = ConverterConfig.GetDefault();
+    BeatSaberBoxes beatSaberBoxes;
+    CloneHeroFrets cloneHeroFrets;
+    ConfigPreview configPreview;
+
+    public void SaveCurrent()
+    {
+        CloneHeroFretColorChange(new ChangeColorDto()
+        {
+            NewColor = cloneHeroFrets.CurrentColor,
+            OldColor = cloneHeroFrets.CurrentColor
+        });
+    }
+
+    void ToggleHidden()
+    {
+        isHidden = !isHidden;
+    }
+
+    /// <summary>
+    /// On fret change save the current beatsaber configuration and reset.
+    /// </summary>
+    /// <param name="oldAndNewColor"></param>
+    void CloneHeroFretColorChange(ChangeColorDto oldAndNewColor)
+    {
+        status = "";
+        configPreview.SetColor(oldAndNewColor.NewColor);
+
+        var config = beatSaberBoxes.CurrentConfiguration;
+
+        // If configuration is empty, don't continue
+        bool skip = true;
+        foreach (var cell in config.DirectionAndColors)
+        {
+            if (cell == null) continue;
+            if (cell.Direction != BeatSaberCutDirection.NONE
+                || cell.Color != BeatSaberColor.NONE) skip = false;
+        }
+        if (skip) return;
+
+        var allConfigs = Config.CloneHeroColorBeatSaberConfigsDic;
+
+        if (!allConfigs.ContainsKey(oldAndNewColor.OldColor))
+        {
+            allConfigs[oldAndNewColor.OldColor] = new List<BeatSaberConfiguration>();
+        }
+        allConfigs[oldAndNewColor.OldColor].Add(config);
+        beatSaberBoxes.ResetConfiguration();
+    }
+
+    /// <summary>
+    /// On preview select load the selected BeatSaber configuration
+    /// </summary>
+    void ConfigPreviewSelected(SelectPreviewDto selectPreview)
+    {
+        Config.CloneHeroColorBeatSaberConfigsDic[selectPreview.Color].Remove(selectPreview.Configuration);
+        beatSaberBoxes.SetConfiguration(selectPreview.Configuration);
+        StateHasChanged();
+    }
+}

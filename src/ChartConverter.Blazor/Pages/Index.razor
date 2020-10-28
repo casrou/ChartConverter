@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<h1>BeatSaber to Clone Hero</h1>
+<div>
+    <p>Play any BeatSaber song in Clone Hero.</p>
+    <EditForm Model="@requestCodeModel" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-inline">
+            <div class="form-group mb-2">
+                <label for="requestCode" class="sr-only">Request code</label>
+                <InputText class="form-control" id="requestCode" placeholder="!bsr 66e6" @bind-Value="requestCodeModel.RequestCode" />
+            </div>
+            <button class="btn btn-dark mb-2 ml-2" type="submit" disabled="@isDisabled">Convert</button>
+        </div>
+    </EditForm>
+    <sub>Copy the Twitch request code from <a target="_blank" href="https://bsaber.com/songs">BeastSaber</a>.</sub>
+</div>
+
+<Configurator @ref="configurator" />
+
+<div id="status">
+    <p>@status </p>
+    <div hidden="@(!isDisabled)" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+
