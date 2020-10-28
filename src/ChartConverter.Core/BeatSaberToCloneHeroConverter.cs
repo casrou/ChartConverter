@@ -17,8 +17,6 @@ namespace ChartConverter.Core
     {
         private readonly ConverterConfig _configuration;
 
-        //public Dictionary<CloneHeroColor, BeatSaberConfiguration> Configuration { get; set; }
-
         public BeatSaberToCloneHeroConverter(ConverterConfig configuration)
         {
             _configuration = configuration;

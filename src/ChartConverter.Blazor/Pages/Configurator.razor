@@ -1,5 +1,4 @@
 ﻿<div id="configurator">
-    <p>@status</p>
     <h5 class="dropdown-toggle" @onclick="@ToggleHidden">Configurator</h5>
     <div hidden="@isHidden">
         <BeatSaberBoxes @ref="beatSaberBoxes" />
@@ -54,7 +53,6 @@
     /// <param name="oldAndNewColor"></param>
     void CloneHeroFretColorChange(ChangeColorDto oldAndNewColor)
     {
-        status = "";
         configPreview.SetColor(oldAndNewColor.NewColor);
 
         var config = beatSaberBoxes.CurrentConfiguration;
