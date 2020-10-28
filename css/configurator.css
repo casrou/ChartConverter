@@ -1,0 +1,168 @@
+﻿
+/* CONFIGURATOR */
+:root {
+    --sustainColor: lightgrey;
+    --fretSize: 1.5;
+    --boxSize: 1.5;
+}
+
+#configurator {
+    margin: 1rem 0 1rem 0;
+}
+
+    #configurator h5 {
+        cursor: pointer;
+    }
+
+    #configurator p,
+    #configurator li {
+        font-size: 75%;
+        opacity: .5;
+    }
+
+/* CLONE HERO CONFIG */
+#clonehero {
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+/*#clonehero table {
+        border-left: #333333 solid 2px;
+        border-right: #333333 solid 2px;
+    }*/
+
+#chFretsRow td {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #333;
+    border-top: calc(var(--fretSize) * 0.15rem) solid white;
+    border-right: calc(var(--fretSize) * 0.3rem) solid white;
+    border-bottom: calc(var(--fretSize) * 0.2rem) solid white;
+    border-left: calc(var(--fretSize) * 0.3rem) solid white;
+    margin: calc(var(--fretSize) * 0.5rem);
+    padding: calc(var(--fretSize) * 0.35rem) calc(var(--fretSize) * 1rem);
+    box-shadow: 0 calc(var(--fretSize) * .1rem) 0 calc(var(--fretSize) * .21rem), 0 calc(var(--fretSize) * .15rem) 0 calc(var(--fretSize) * .21rem), 0 calc(var(--fretSize) * .2rem) 0 calc(var(--fretSize) * .2rem);
+}
+
+    #chFretsRow td::after {
+        content: " ";
+        height: calc(var(--fretSize) * 1.5rem);
+        width: calc(var(--fretSize) * 3rem);
+        position: absolute;
+        margin-left: calc(var(--fretSize) * -1.5rem);
+        margin-top: calc(var(--fretSize) * -0.6rem);
+        border-radius: 50%;
+        opacity: 0.5;
+        box-shadow: 0px calc(var(--fretSize) * 1px) calc(var(--fretSize) * 3px) calc(var(--fretSize) * 1px) #333;
+        z-index: -1;
+    }
+
+    #chFretsRow td.selected::after {
+        box-shadow: 0px calc(var(--fretSize) * 1px) calc(var(--fretSize) * 2px) calc(var(--fretSize) * 3px) #333;
+    }
+
+    #chFretsRow td:active {
+        /*background-color: #3e8e41;*/
+        /*box-shadow: 0 5px #666;*/
+        transform: translateY(4px);
+    }
+
+/*#clonehero td.sustained {
+            background-color: var(--sustainColor);
+            box-shadow: 0px .25em 1px .25px var(--sustainColor), 0px .5em 1px .25px var(--sustainColor), 0px .75em 1px .25px var(--sustainColor), 0px 1em 1px .25px var(--sustainColor), 0px 1.25em 1px .25px var(--sustainColor), 0px 1.5em 1px .25px var(--sustainColor);
+        }*/
+
+#clonehero .green {
+    color: green;
+}
+
+#clonehero .red {
+    color: red;
+}
+
+#clonehero .yellow {
+    color: yellow;
+}
+
+#clonehero .blue {
+    color: blue;
+}
+
+#clonehero .orange {
+    color: orange;
+}
+
+/*#clonehero .miniBeatSaberBoxes {
+    transform: scale(0.5);
+    border-collapse: collapse;
+}*/
+
+#configPreview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+    #configPreview div {
+        /*display: inline-block;*/
+    }
+
+    #configPreview table {
+        border-collapse: collapse;
+        margin: 0.5rem 1rem;
+    }
+
+    #configPreview td > div {
+        color: white;
+        text-shadow: 0px 0px 12px white;
+        font-family: 'Sawarabi Mincho', sans-serif;
+        height: calc(var(--boxSize) * 2rem);
+        width: calc(var(--boxSize) * 2rem);
+        border: lightgrey solid 1px;
+        border-radius: 5%;
+        text-align: center;
+        font-size: 2rem;
+        vertical-align: middle;
+        line-height: calc(var(--boxSize) * 1.8rem);
+        cursor: pointer;
+    }
+
+/* BEAT SABER CONFIG */
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+
+#beatsaber {
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+    #beatsaber table {
+        border-collapse: collapse;
+    }
+
+    #beatsaber td > div {
+        color: white;
+        text-shadow: 0px 0px 25px white;
+        font-family: 'Sawarabi Mincho', sans-serif;
+        height: calc(var(--boxSize) * 4rem);
+        width: calc(var(--boxSize) * 4rem);
+        border: lightgrey solid 1px;
+        border-radius: 5%;
+        text-align: center;
+        font-size: 5rem;
+        vertical-align: middle;
+        line-height: calc(var(--boxSize) * 3.8rem);
+        cursor: pointer;
+    }
+
+    #beatsaber .red {
+        background-color: red;
+        /* box-shadow: 0px 0px 1px 0px red; */
+    }
+
+    #beatsaber .blue {
+        background-color: blue;
+        /* box-shadow: 0px 0px 1px 0px blue; */
+    }
