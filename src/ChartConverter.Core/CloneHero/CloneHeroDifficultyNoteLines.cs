@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ChartConverter.Core
 {
-    internal class CloneHeroDifficultyNoteLines
+    public class CloneHeroDifficultyNoteLines
     {
         private readonly BeatSaberChart _chart;
         private readonly int _resolution;
@@ -25,8 +25,8 @@ namespace ChartConverter.Core
 
             var cloneHeroDifficulty = CloneHeroDifficultyHelper.GetCloneHeroDifficultyFromBeatSaberDifficulty(_chart.Difficulty);
 
-            sb.Append("[" + cloneHeroDifficulty + "Single]");
-            sb.Append("\n{\n");
+            sb.AppendLine($"[{cloneHeroDifficulty}Single]");
+            sb.AppendLine("{");
 
             //foreach (var note in _chart.Notes)
             //{
@@ -40,7 +40,7 @@ namespace ChartConverter.Core
                 //sb.Append($"{pos} = {type} {fret} {length}\n");
             //}
 
-            sb.Append("}\n");
+            sb.AppendLine("}");
             return sb.ToString();
         }
 
@@ -57,8 +57,13 @@ namespace ChartConverter.Core
 
                     foreach (var config in configurations)
                     {
-                        var direction = config.DirectionAndColors[note.LineLayer, note.LineIndex]?.Direction ?? BeatSaberCutDirection.NONE;
-                        var color = config.DirectionAndColors[note.LineLayer, note.LineIndex]?.Color ?? BeatSaberColor.NONE;
+                        // matrix is upside down.. think of better fix
+                        var layer = note.LineLayer;
+                        if (layer == 0) layer = 2;
+                        else if (layer == 2) layer = 0;
+
+                        var direction = config.DirectionAndColors[layer, note.LineIndex]?.Direction ?? BeatSaberCutDirection.NONE;
+                        var color = config.DirectionAndColors[layer, note.LineIndex]?.Color ?? BeatSaberColor.NONE;
 
                         if (direction == BeatSaberCutDirection.NONE || color == BeatSaberColor.NONE) continue;
                         var correctNodeDirectionOrAll = direction == note.CutDirection || direction == BeatSaberCutDirection.ALL;
@@ -69,7 +74,7 @@ namespace ChartConverter.Core
 
                         var length = 0;
                         sb.Append("  ");
-                        sb.Append($"{pos} = {type} {fret} {length}\n");
+                        sb.AppendLine($"{pos} = {type} {fret} {length}");
                     }
                 }
             }
