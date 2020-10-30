@@ -41,10 +41,9 @@ namespace ChartConverter.Blazor.Pages
             await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", cloneHeroZip.FileName, "application/octet-stream", cloneHeroZip.Data);
 
             status = $"Done!";
-            StateHasChanged();
-
             requestCodeModel.RequestCode = "";
             isDisabled = false;
+            StateHasChanged();
         }
     }
 }
