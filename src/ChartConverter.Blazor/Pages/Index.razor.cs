@@ -43,6 +43,7 @@ namespace ChartConverter.Blazor.Pages
             status = $"Done!";
             StateHasChanged();
 
+            requestCodeModel.RequestCode = "";
             isDisabled = false;
         }
     }
