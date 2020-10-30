@@ -207,7 +207,7 @@ namespace ChartConverter.Tests.CloneHero
 
             Assert.Equal(sb.ToString(), result);
         }
-    
+
         [Fact]
         public void ToString_WithUpperRowConfigButLowerAndMiddleNotes_MapNothing()
         {
@@ -270,6 +270,56 @@ namespace ChartConverter.Tests.CloneHero
             sb.AppendLine("}");
 
             Assert.Equal(sb.ToString(), result);
+        }
+
+        [Fact]
+        public void ToString_WithWeirdMaps_NotCrash()
+        {
+            // Arrange
+            var json = @"[{
+            ""_time"": 58,
+            ""_lineIndex"": 5000,
+            ""_lineLayer"": 2750,
+            ""_type"": 1,
+            ""_cutDirection"": 0
+        },
+        {
+            ""_time"": 58,
+            ""_lineIndex"": 5000,
+            ""_lineLayer"": 3000,
+            ""_type"": 1,
+            ""_cutDirection"": 0
+        },
+        {
+            ""_time"": 58.25,
+            ""_lineIndex"": -2000,
+            ""_lineLayer"": 1000,
+            ""_type"": 0,
+            ""_cutDirection"": 1
+        },
+        {
+            ""_time"": 58.25,
+            ""_lineIndex"": -2000,
+            ""_lineLayer"": 1250,
+            ""_type"": 0,
+            ""_cutDirection"": 1
+        }]";
+            var notes = JsonSerializer.Deserialize<List<Note>>(json);
+            var chart = new BeatSaberChart()
+            {
+                Difficulty = Core.BeatSaber.BeatSaberDifficulty.ExpertPlus,
+                Notes = notes
+            };
+
+            var config = ConverterConfig.GetDefault();
+
+            var noteLines = new CloneHeroDifficultyNoteLines(chart, 192, config);
+
+            // Act
+            var exception = Record.Exception(() => noteLines.ToString());
+
+            // Assert
+            Assert.Null(exception);
         }
     }
 }

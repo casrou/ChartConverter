@@ -9,7 +9,7 @@ namespace ChartConverter.Tests.CloneHero
     public class CloneHeroChartTests
     {
         [Fact]
-        public async void Constructor_FromCorrectInfoFileAndCharts_HaveCorrectContentLines()
+        public void Constructor_FromCorrectInfoFileAndCharts_HaveCorrectContentLines()
         {
             //// Arrange
             //var infoFile = new BeatSaberInfoFile()

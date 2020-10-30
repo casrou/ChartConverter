@@ -57,13 +57,14 @@ namespace ChartConverter.Core
 
                     foreach (var config in configurations)
                     {
-                        // matrix is upside down.. think of better fix
-                        var layer = note.LineLayer;
-                        if (layer == 0) layer = 2;
-                        else if (layer == 2) layer = 0;
+                        // Layer needs to be flipped upside down
+                        var layerIndex = Math.Abs(note.LineLayer - 2);
 
-                        var direction = config.DirectionAndColors[layer, note.LineIndex]?.Direction ?? BeatSaberCutDirection.NONE;
-                        var color = config.DirectionAndColors[layer, note.LineIndex]?.Color ?? BeatSaberColor.NONE;
+                        if (layerIndex - 1 > config.DirectionAndColors.GetLength(0)) continue;
+                        if (note.LineIndex - 1 > config.DirectionAndColors.GetLength(1)) continue;
+
+                        var direction = config.DirectionAndColors[layerIndex, note.LineIndex]?.Direction ?? BeatSaberCutDirection.NONE;
+                        var color = config.DirectionAndColors[layerIndex, note.LineIndex]?.Color ?? BeatSaberColor.NONE;
 
                         if (direction == BeatSaberCutDirection.NONE || color == BeatSaberColor.NONE) continue;
                         var correctNodeDirectionOrAll = direction == note.CutDirection || direction == BeatSaberCutDirection.ALL;
