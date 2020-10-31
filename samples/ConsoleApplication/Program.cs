@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using ChartConverter.Core;
 
-namespace ChartConverter.Console
+namespace ConsoleApplication
 {
     class Program
     {
@@ -18,28 +18,37 @@ namespace ChartConverter.Console
             if (args.Length > 0)
             {
                 var zipFilePath = args[0];
-                await ProcessZipFileAsync(zipFilePath);
+                if (IsValidZipFilePath(zipFilePath))
+                    await ProcessZipFileAsync(zipFilePath);
+                else 
+                    Console.WriteLine("Invalid file path.");                
                 return;
             }
 
-            System.Console.WriteLine("Convert from [z]ip file or BeatSaver request [c]ode?");
-            var choice = System.Console.ReadLine();
+            Console.WriteLine("Convert from [z]ip file or BeatSaver request [c]ode?");
+            var choice = Console.ReadLine();
 
             switch (choice.ToLower())
             {
                 case "z":
-                    System.Console.WriteLine("Enter zip-file path:");
-                    var zipFilePath = System.Console.ReadLine().Trim('"');
-                    await ProcessZipFileAsync(zipFilePath);
+                    Console.WriteLine("Enter zip-file path:");
+                    var zipFilePath = Console.ReadLine();
+                    if (IsValidZipFilePath(zipFilePath))
+                        await ProcessZipFileAsync(zipFilePath);
+                    else
+                        Console.WriteLine("Invalid file path.");
                     break;
                 case "c":
-                    System.Console.WriteLine("Enter BeatSaver request code:");
-                    var requestCode = System.Console.ReadLine();
+                    Console.WriteLine("Enter BeatSaver request code:");
+                    var requestCode = Console.ReadLine();
                     await ProcessRequestCodeAsync(requestCode);
                     break;
                 default:
+                    Console.WriteLine("Not a valid choice..");
                     break;
             }
+
+            Console.WriteLine("Press any key to exit."); Console.ReadKey();
         }
 
         private static async Task ProcessRequestCodeAsync(string requestCode)
@@ -57,5 +66,10 @@ namespace ChartConverter.Console
             File.WriteAllBytes($"{bytesAndFileName.FileName}", bytesAndFileName.Data);
         }
 
+        private static bool IsValidZipFilePath(string zipFilePath)
+        {
+            var trimmedPath = zipFilePath.Trim('"');
+            return File.Exists(trimmedPath);
+        }
     }
 }
