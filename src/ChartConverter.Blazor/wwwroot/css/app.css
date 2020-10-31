@@ -1,10 +1,10 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 1rem;
 }
 
-a, .btn-link {
+/*a, .btn-link {
     color: #0366d6;
 }
 
@@ -103,7 +103,7 @@ app {
 
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
-}
+}*/
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
@@ -136,7 +136,7 @@ app {
         top: 0.5rem;
     }
 
-@media (max-width: 767.98px) {
+/*@media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
     }
@@ -167,7 +167,7 @@ app {
         top: 0;
     }
 
-    .main > div {
+    .main > div {*/
         /* padding-left: 2rem !important;
         padding-right: 1.5rem !important;*/
         /*padding-left: 20rem !important;
@@ -175,19 +175,15 @@ app {
         /*margin-left: auto;
         margin-right: auto;
         width: 40rem*/
-    }
+    /*}
 
     .navbar-toggler {
         display: none;
     }
 
-    .sidebar .collapse {
+    .sidebar .collapse {*/
         /* Never collapse the sidebar for wide screens */
-        display: block;
+        /*display: block;
     }
-}
+}*/
 
-/* STATUS */
-#status {
-    margin: 1rem 0 1rem 0;
-}
