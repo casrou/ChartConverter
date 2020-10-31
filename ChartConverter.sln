@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApplication", "samples\ChartConverter.Console\ConsoleApplication.csproj", "{460E39F3-9919-4FEF-80CF-F345CB0E0E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApplication", "samples\ConsoleApplication\ConsoleApplication.csproj", "{460E39F3-9919-4FEF-80CF-F345CB0E0E4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartConverter.Blazor", "src\ChartConverter.Blazor\ChartConverter.Blazor.csproj", "{415FD863-2F70-4FA6-9D1E-F82F4979650A}"
 EndProject
