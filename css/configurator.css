@@ -1,4 +1,8 @@
-﻿
+﻿/* STATUS */
+#status {
+    margin: 1rem 0 1rem 0;
+}
+
 /* CONFIGURATOR */
 :root {
     --sustainColor: lightgrey;
@@ -93,11 +97,6 @@
     color: orange;
 }
 
-/*#clonehero .miniBeatSaberBoxes {
-    transform: scale(0.5);
-    border-collapse: collapse;
-}*/
-
 #configPreview {
     display: flex;
     flex-wrap: wrap;
@@ -125,7 +124,7 @@
         text-align: center;
         font-size: 2rem;
         vertical-align: middle;
-        line-height: calc(var(--boxSize) * 1.8rem);
+        line-height: calc(var(--boxSize) * 1.9rem);
         cursor: pointer;
     }
 
