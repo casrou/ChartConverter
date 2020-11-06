@@ -4,6 +4,23 @@ html, body {
     margin-top: 1rem;
 }
 
+#github {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
+#github > img {
+    height: 64px;
+    margin: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    #github > img {
+        height: 32px;
+        margin: 10px;
+    }
+}
 /*a, .btn-link {
     color: #0366d6;
 }
